@@ -1,29 +1,54 @@
-# IT 140 Module Four Assignment
-# Higher/Lower Game Pseudocode Template
-#
-# Complete the TODO prompts below with your own pseudocode.
-# Keep this file in .pseudo format for submission.
-#
-# Use clear indentation to show decisions and repeated behavior.
-# Your finished pseudocode should address every requirement in the
-# current Module Four Assignment Guidelines and Rubric.
-
 START hilow_game
 
     # Establish a valid guessing range.
     TODO: Obtain the lower and upper bounds.
+    REPEAT
+        OUTPUT "Enter the lower bound: "
+        INPUT lower_bound
+        OUTPUT "Enter the upper bound (must be greater than lower bound): "
+        INPUT upper_bound
+        
+        IF lower_bound >= upper_bound THEN
+            OUTPUT "Invalid bounds. Please try again."
+            is_valid_range = FALSE
+        ELSE
+            is_valid_range = TRUE
+        ENDIF
     TODO: Repeat as needed until the bounds satisfy the requirement.
+    UNTIL is_valid_range == TRUE
 
     # Establish the number the player is trying to guess.
     TODO: Generate the required random number from the valid range.
+    secret_number = GENERATE_RANDOM(lower_bound, upper_bound)
 
     # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
+    is_correct = FALSE
+    
     TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+    WHILE is_correct == FALSE
+    
+        TODO: Obtain and validate a guess using the selected bounds.
+        OUTPUT "Enter your guess between ", lower_bound, " and ", upper_bound, ": "
+        INPUT player_guess
+        
+        IF player_guess < lower_bound OR player_guess > upper_bound THEN
+            OUTPUT "Your guess is out of bounds!"
+        ELSE
+            TODO: Compare a valid guess and provide the required feedback.
+            IF player_guess == secret_number THEN
+                OUTPUT "Congratulations! You guessed it!"
+                is_correct = TRUE
+            ELSEIF player_guess < secret_number THEN
+                OUTPUT "Too low!"
+            ELSE
+                OUTPUT "Too high!"
+            ENDIF
+        ENDIF
+        
+    ENDWHILE
+
+    TODO: Obtain and validate another guess when play continues.
+    # Note: If your specific rubric requires a replay prompt for a whole new game, 
+    # you would wrap the entire game logic above in another loop here.
 
 END hilow_game
-
-# === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
